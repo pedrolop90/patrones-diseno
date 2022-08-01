@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: PATRONES-ADAPTER
+  profiles:
+    active: dev

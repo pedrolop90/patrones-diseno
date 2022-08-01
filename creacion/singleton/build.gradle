@@ -1,0 +1,72 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.4.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'application'
+    id 'jacoco'
+}
+
+group 'com.com.patrones'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = '11'
+targetCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+mainClassName = "com.com.patrones.MainApp"
+
+dependencies {
+    implementation 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+    //
+    implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+
+    //
+    implementation "io.springfox:springfox-boot-starter:3.0.0"
+    compileOnly "io.springfox:springfox-swagger-ui:3.0.0"
+
+    //
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.3.8.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:2.3.8.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator:2.3.4.RELEASE'
+
+    //
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.3.4.RELEASE'
+
+    runtimeOnly 'com.h2database:h2:1.4.200'
+//    runtimeOnly 'mysql:mysql-connector-java:8.0.25'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.3.4.RELEASE'
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+
+jacocoTestReport {
+    reports {
+        //xml.required = true
+        xml.enabled = true
+    }
+}
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.40
+            }
+        }
+    }
+}
